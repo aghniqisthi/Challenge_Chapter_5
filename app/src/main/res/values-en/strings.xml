@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Challenge Chapter 5</string>
+    <string name="btn_kembali">Back</string>
+    <string name="home_welcome">"Welcome, "</string>
+    <string name="home_ourproduct">Our Product</string>
+    <string name="login">Login</string>
+    <string name="login_username">Username</string>
+    <string name="login_pass">Password</string>
+    <string name="login_regis">Don\'t have any account?</string>
+    <string name="profile">Profile</string>
+    <string name="profile_name">Name</string>
+    <string name="profile_age">Age</string>
+    <string name="profile_addr">Address</string>
+    <string name="profile_idn">Indonesian</string>
+    <string name="profile_eng">English</string>
+    <string name="profile_kor">Korean</string>
+    <string name="profile_update">Update</string>
+    <string name="profile_logout">Logout</string>
+    <string name="sign_name">Input Your Name</string>
+    <string name="register">Register</string>
+    <string name="regis_confpass">Confirm Your Password</string>
+</resources>
