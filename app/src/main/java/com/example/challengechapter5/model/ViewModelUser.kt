@@ -52,7 +52,7 @@ class ViewModelUser : ViewModel() {
         })
     }
 
-    fun callPostAPICar(name:String, username:String, password:String, address:String, age:Int){
+    fun callPostAPIUser(name:String, username:String, password:String, address:String, age:Int){
         RetrofitClientUser.instance.addUser(User(name, username, password, address, age)).enqueue(object :
             Callback<ResponseDataUserItem> {
             override fun onResponse(call: Call<ResponseDataUserItem>, response: Response<ResponseDataUserItem>) {

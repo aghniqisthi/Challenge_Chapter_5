@@ -51,7 +51,7 @@ class RegisterActivity : AppCompatActivity() {
 
     fun addUser(name:String, username:String, password:String, address:String, age:Int){
         var viewModel = ViewModelProvider(this).get(ViewModelUser::class.java)
-        viewModel.callPostAPICar(name, username, password, address, age)
+        viewModel.callPostAPIUser(name, username, password, address, age)
         viewModel.addLiveDataUser().observe(this, {
             if(it!=null){
                 Toast.makeText(this, "Registration Success!", Toast.LENGTH_SHORT).show()
