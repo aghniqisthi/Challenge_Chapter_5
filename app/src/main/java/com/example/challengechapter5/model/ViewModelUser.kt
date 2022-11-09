@@ -1,34 +1,27 @@
+@file:Suppress("DeferredResultUnused")
+
 package com.example.challengechapter5.model
 
-import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.challengechapter5.activity.HomeActivity
 import com.example.challengechapter5.activity.LoginActivity
-import com.example.challengechapter5.activity.ProfileActivity
 import com.example.challengechapter5.network.RetrofitClientUser
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.coroutines.coroutineContext
 
 class ViewModelUser : ViewModel() {
 
-    lateinit var liveDataUser : MutableLiveData<List<ResponseDataUserItem>>
-    lateinit var postLDUser : MutableLiveData<ResponseDataUserItem>
+    var liveDataUser : MutableLiveData<List<ResponseDataUserItem>> = MutableLiveData()
+    var postLDUser : MutableLiveData<ResponseDataUserItem> = MutableLiveData()
     lateinit var putLDUser : MutableLiveData<List<ResponseDataUserItem>>
 
     init {
-        liveDataUser = MutableLiveData()
-        postLDUser = MutableLiveData()
         putLDUser = MutableLiveData()
         callAPIUser()
-    }
-
-    fun ambilLiveDataUser() : MutableLiveData<List<ResponseDataUserItem>> {
-        return liveDataUser
     }
 
     fun addLiveDataUser() : MutableLiveData<ResponseDataUserItem> {
@@ -65,7 +58,7 @@ class ViewModelUser : ViewModel() {
         })
     }
 
-    fun callAPIUser(){
+    private fun callAPIUser(){
         GlobalScope.async {
             RetrofitClientUser.instance.getAllUser().enqueue(object : Callback<List<ResponseDataUserItem>>{
                 override fun onResponse(call: Call<List<ResponseDataUserItem>>, response: Response<List<ResponseDataUserItem>>) {
@@ -80,3 +73,4 @@ class ViewModelUser : ViewModel() {
         }
     }
 }
+

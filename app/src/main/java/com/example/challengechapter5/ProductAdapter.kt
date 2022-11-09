@@ -9,20 +9,16 @@ import com.example.challengechapter5.activity.DetailProductActivity
 import com.example.challengechapter5.databinding.ItemProductBinding
 import com.example.challengechapter5.model.ResponseDataProductItem
 
-class ProductAdapter(var listFilm : List<ResponseDataProductItem>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(private var listFilm : List<ResponseDataProductItem>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    var onDetail : ((ResponseDataProductItem)->Unit)? = null
+    class ViewHolder(var binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root)
 
-    class ViewHolder(var binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductAdapter.ViewHolder {
-        var view = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.txtJudulFilm.text = listFilm[position].name
         holder.binding.txtYearFilm.text = listFilm[position].price
         Glide.with(holder.itemView.context).load(listFilm[position].imageLink).into(holder.binding.ivItem)

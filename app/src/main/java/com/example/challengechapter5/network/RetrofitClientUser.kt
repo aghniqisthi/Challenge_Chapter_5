@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.example.challengechapter5.network
 
 import retrofit2.Retrofit

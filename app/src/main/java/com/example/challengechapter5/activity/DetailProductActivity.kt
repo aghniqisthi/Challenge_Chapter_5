@@ -1,26 +1,19 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.example.challengechapter5.activity
 
-import android.R
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
-import android.text.style.BackgroundColorSpan
-import android.view.View
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.challengechapter5.databinding.ActivityDetailProductBinding
 import com.example.challengechapter5.model.ResponseDataProductItem
-import kotlinx.android.synthetic.main.activity_detail_product.*
-import okhttp3.internal.toHexString
-
 
 class DetailProductActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityDetailProductBinding
-    lateinit var dataFilm : ResponseDataProductItem
+    private lateinit var binding : ActivityDetailProductBinding
+    private lateinit var dataFilm : ResponseDataProductItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

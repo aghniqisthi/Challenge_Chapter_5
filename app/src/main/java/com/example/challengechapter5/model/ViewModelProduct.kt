@@ -1,3 +1,5 @@
+@file:Suppress("ControlFlowWithEmptyBody")
+
 package com.example.challengechapter5.model
 
 import androidx.lifecycle.MutableLiveData
@@ -8,11 +10,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ViewModelProduct : ViewModel() {
-    var liveDataFilm : MutableLiveData<List<ResponseDataProductItem>>
+    var liveDataFilm : MutableLiveData<List<ResponseDataProductItem>> = MutableLiveData()
 
-    init {
-        liveDataFilm = MutableLiveData()
-    }
     fun getliveDataFilm() : MutableLiveData<List<ResponseDataProductItem>> {
         return  liveDataFilm
     }

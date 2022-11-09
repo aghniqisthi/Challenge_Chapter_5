@@ -15,7 +15,7 @@ import retrofit2.Response
 import java.util.*
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var binding : ActivityLoginBinding
+    private lateinit var binding : ActivityLoginBinding
     lateinit var sharedpref : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +28,8 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {
             //data inputan user
-            var inputUsername = binding.editUsernameLog.text.toString()
-            var inputPass = binding.editPasswordLog.text.toString()
+            val inputUsername = binding.editUsernameLog.text.toString()
+            val inputPass = binding.editPasswordLog.text.toString()
 
             if(inputUsername != null && inputPass !=null) requestLogin(inputUsername, inputPass)
             else if(inputUsername == null && inputPass == null) toast("Empty Username or Password!")
@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(this, mess, Toast.LENGTH_LONG).show()
     }
 
-    fun requestLogin(username:String, password:String){
+    private fun requestLogin(username:String, password:String){
         RetrofitClientUser.instance.getAllUser().enqueue(object : Callback<List<ResponseDataUserItem>> {
             override fun onResponse(call: Call<List<ResponseDataUserItem>>, response: Response<List<ResponseDataUserItem>>) {
                 var data = false
@@ -63,11 +63,11 @@ class LoginActivity : AppCompatActivity() {
                     if(response.body() != null){
                         val respon = response.body()
                         for (i in 0 until respon!!.size){
-                            if(respon[i].username.equals(username) && respon[i].password.equals(password)){
+                            if(respon[i].username == username && respon[i].password == password){
                                 data = true
 
                                 //add ke sharedpref
-                                var addUser = sharedpref.edit()
+                                val addUser = sharedpref.edit()
                                 addUser.putString("id", respon[i].id)
                                 addUser.putString("username", username)
                                 addUser.putString("password", password)
@@ -77,11 +77,11 @@ class LoginActivity : AppCompatActivity() {
                                 addUser.apply()
 
                                 toast("Login Success!")
-                                var pinda = Intent(this@LoginActivity, HomeActivity::class.java)
+                                val pinda = Intent(this@LoginActivity, HomeActivity::class.java)
                                 startActivity(pinda)
                             }
                         }
-                        if(data == false) toast("Wrong Username or Password!")
+                        if(!data) toast("Wrong Username or Password!")
                     }
                     else toast("Empty Response!")
                 }
@@ -95,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    fun setLocale(lang:String){
+    private fun setLocale(lang:String){
         val lokal = Locale(lang)
         val conf = resources.configuration
         conf.locale = lokal

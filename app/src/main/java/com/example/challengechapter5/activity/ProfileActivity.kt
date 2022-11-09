@@ -3,18 +3,17 @@ package com.example.challengechapter5.activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.challengechapter5.databinding.ActivityProfileBinding
 import com.example.challengechapter5.model.ViewModelUser
-import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityProfileBinding
-    lateinit var sharedpref : SharedPreferences
+    private lateinit var binding : ActivityProfileBinding
+    private lateinit var sharedpref : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +50,7 @@ class ProfileActivity : AppCompatActivity() {
             updateDataFilm(id!!.toInt(), name, username, password!!, age, addr)
 
             //update data di sharedpref
-            var addUser = sharedpref.edit()
+            val addUser = sharedpref.edit()
             addUser.putString("username", username)
             addUser.putString("name", name)
             addUser.putInt("age", age)
@@ -63,7 +62,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.btnLogout.setOnClickListener {
-            var addUser = sharedpref.edit()
+            val addUser = sharedpref.edit()
             addUser.putString("username", "")
             addUser.putString("password", "")
             addUser.apply()
@@ -73,19 +72,15 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    fun updateDataFilm(id : Int, name : String, username : String, password:String, age : Int, addr : String) {
-        val viewModel = ViewModelProvider(this).get(ViewModelUser::class.java)
+    private fun updateDataFilm(id : Int, name : String, username : String, password:String, age : Int, addr : String) {
+        val viewModel = ViewModelProvider(this)[ViewModelUser::class.java]
         viewModel.callEditUser(id, name, username, password, age, addr)
-        viewModel.editLiveDataUser().observe(this, {
+        viewModel.editLiveDataUser().observe(this) {
             if (it != null) {
                 Toast.makeText(this, "Data Updated!", Toast.LENGTH_SHORT).show()
             }
-        })
+        }
     }
 
 
-
-    fun toast(mess:String){
-        Toast.makeText(this, mess, Toast.LENGTH_LONG).show()
-    }
 }
